@@ -1,19 +1,17 @@
-yaml
-backend:
-  name: github
-  repo: RabeeLuqmann/rabeeluqmann.github.io
-  branch: main
-
-media_folder: "images"
-public_folder: "/images"
-
-collections:
-  - name: "pages"
-    label: "Pages"
-    files:
-      - name: "index"
-        label: "Home Page"
-        file: "index.html"
-        fields:
-          - { name: "title", label: "Title", widget: "string" }
-          - { name: "body", label: "Content", widget: "markdown" }
+html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Manager</title>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+</head>
+<body>
+  <script>
+    if (typeof DecapCMS !== 'undefined') {
+      DecapCMS.init();
+    }
+  </script>
+</body>
+</html>
