@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rabeè Luqmann – Author</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f2f5;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 42px;
+    }
+    header p {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-top: 0;
+      color: #1a1a1a;
+    }
+    .book-list, #coverList {
+      margin-top: 20px;
+    }
+    .book-item, .cover-item {
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .book-item a, .cover-item a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    .book-item a:hover, .cover-item a:hover {
+      text-decoration: underline;
+    }
+    form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    input, textarea, button {
+      padding: 12px;
+      margin: 5px 0;
+      font-size: 16px;
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #333;
+    }
+    ul { padding-left: 20px; }
+    ul li { margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Rabeè Luqmann</h1>
+    <p>Author • Storyteller • Explorer of the Human Heart</p>
+  </header>
+
+  <section>
+    <h2>About the Author</h2>
+    <p>Rabeè Luqmann is a German-Jordanian author with a passion for exploring the complexities of love, desire, and the human condition across cultures. His debut novel, <em>Bound by Destiny</em>, captivated readers with its poignant portrayal of arranged marriage in India, blending tradition with modernity.</p>
+    <p>With <em>Endorphin: The Ache of Wanting</em>, Luqmann plunged into the visceral depths of longing, addiction, and obsessive emotion, crafting a raw, lyrical narrative that lingers in the mind. <em>The Daughter Who Was Not Named</em> solidifies his place as a bold voice, exploring the dark heart.</p>
+    <p>Luqmann’s writing is marked by vivid cultural tapestries and powerful storytelling, whether unraveling the tensions between duty and passion or probing the addictive nature of unfulfilled desire. His work resonates with universal truths while celebrating the nuances of diverse worlds.</p>
+    <p>When not writing, Luqmann immerses himself in philosophy, psychology, and the arts—fueling his fascination with the forces that drive human connection.</p>
+  </section>
+
+  <section>
+    <h2>Books</h2>
+    <div id="bookList" class="book-list"></div>
+    <form id="addBookForm">
+      <input type="text" id="bookTitle" placeholder="Book Title" required />
+      <input type="url" id="bookLink" placeholder="Kindle Link" required />
+      <button type="submit">Add Book</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Book Covers</h2>
+    <div id="coverList"></div>
+    <form id="addCoverForm">
+      <input type="text" id="coverTitle" placeholder="Book Title" required />
+      <input type="url" id="coverUrl" placeholder="Image URL" required />
+      <button type="submit">Add Cover</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <form action="https://formspree.io/f/yourformid" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" style="height:120px;"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Newsletter</h2>
+    <p>Subscribe to receive updates on new releases.</p>
+    <form action="https://formspree.io/f/yourformid" method="POST">
+      <input type="email" name="email" placeholder="Your Email" required />
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Follow Me</h2>
+    <ul>
+      <li><a href="#" target="_blank">Instagram</a></li>
+      <li><a href="#" target="_blank">Twitter / X</a></li>
+      <li><a href="#" target="_blank">Facebook</a></li>
+      <li><a href="#" target="_blank">Goodreads</a></li>
+    </ul>
+  </section>
+
+  <script>
+    const bookList = document.getElementById('bookList');
+    const form = document.getElementById('addBookForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('bookTitle').value;
+      const link = document.getElementById('bookLink').value;
+      const div = document.createElement('div');
+      div.className = 'book-item';
+      div.innerHTML = `<strong>${title}</strong><br><a href="${link}" target="_blank">View on Kindle</a>`;
+      bookList.appendChild(div);
+      form.reset();
+    });
+
+    const coverList = document.getElementById('coverList');
+    const coverForm = document.getElementById('addCoverForm');
+    coverForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('coverTitle').value;
+      const url = document.getElementById('coverUrl').value;
+      const div = document.createElement('div');
+      div.className = 'cover-item';
+      div.innerHTML = `<strong>${title}</strong><br><img src="${url}" alt="${title} Cover" style="max-width:200px; margin-top:10px; border-radius:8px;">`;
+      coverList.appendChild(div);
+      coverForm.reset();
+    });
+  </script>
+
+</body>
+</html>
