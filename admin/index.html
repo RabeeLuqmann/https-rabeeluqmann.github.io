@@ -4,8 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
+  <!-- Include the Decap CMS library -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- Script to initialize Decap CMS -->
+  <script>
+    if (typeof DecapCMS !== 'undefined') {
+      DecapCMS.init();
+    } else {
+      console.error('Decap CMS failed to load');
+    }
+  </script>
 </body>
 </html>
