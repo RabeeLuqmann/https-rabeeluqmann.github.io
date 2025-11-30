@@ -19,7 +19,7 @@
             color: #333;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding-top: 70px; /* Space for fixed header */
+            padding-top: 70px;
         }
 
         .container {
@@ -212,6 +212,21 @@
             font-size: 14px;
             text-align: center;
             padding: 10px;
+        }
+
+        .cms-book-cover {
+            width: 100%;
+            height: 250px;
+            margin: 0 auto 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .cms-book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .book-title {
@@ -455,6 +470,27 @@
             color: #7f8c8d;
         }
 
+        /* CMS Books Section */
+        .cms-books-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 60px 20px;
+            margin-top: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff6b6b;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             h1 {
@@ -497,6 +533,7 @@
                 <div class="dropdown-menu" id="dropdownMenu">
                     <a href="#about"><i class="fas fa-user"></i> About</a>
                     <a href="#books"><i class="fas fa-book"></i> Books</a>
+                    <a href="#cms-books"><i class="fas fa-database"></i> CMS Books</a>
                     <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
                     <a href="#social"><i class="fas fa-share-alt"></i> Social</a>
                     <a href="#" id="exportBooks"><i class="fas fa-download"></i> Export Books</a>
@@ -560,6 +597,19 @@
                     </div>
                     <button type="submit" class="add-btn">Add New Book</button>
                 </form>
+            </div>
+        </section>
+
+        <!-- CMS Books Section -->
+        <section id="cms-books" class="cms-books-section">
+            <div class="container">
+                <h2>Books from CMS</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 40px;">These books are managed through the admin panel</p>
+                <div id="cms-books-container" class="books-grid">
+                    <div class="loading" style="text-align: center; padding: 40px; color: #666;">
+                        Loading books from CMS...
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -861,8 +911,110 @@
             });
         });
 
+        // ================== CMS BOOKS FUNCTIONALITY ==================
+        async function loadCMSBooks() {
+            try {
+                const container = document.getElementById('cms-books-container');
+                
+                // Try to load books from GitHub
+                const books = await fetchCMSBooks();
+                
+                if (books.length === 0) {
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 40px; color: #666;">
+                            <p>No books found in the CMS yet.</p>
+                            <p>Add books through the admin panel at: <a href="/admin/">/admin/</a></p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Display CMS books
+                container.innerHTML = books.map(book => `
+                    <div class="book-card">
+                        <div class="cms-book-cover">
+                            <img src="${book.cover}" alt="${book.title}" 
+                                 onerror="this.style.background='linear-gradient(45deg, #3498db, #9b59b6)'; this.innerHTML='<div style=\\'display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-weight: bold; padding: 20px; text-align: center;\\'>${book.title}</div>'">
+                            ${book.featured ? '<span class="featured-badge">Featured</span>' : ''}
+                        </div>
+                        <h3 class="book-title">${book.title}</h3>
+                        <p class="book-description">${book.description}</p>
+                        <div class="purchase-links" style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                            ${book.links && book.links.amazon ? `<a href="${book.links.amazon}" target="_blank" class="kindle-btn">Buy on Amazon</a>` : ''}
+                            ${book.links && book.links.other ? `<a href="${book.links.other}" target="_blank" style="background: #666; color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">Buy Here</a>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+                
+            } catch (error) {
+                console.error('Error loading CMS books:', error);
+                document.getElementById('cms-books-container').innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #666;">
+                        <p>Books from CMS will be displayed here soon.</p>
+                        <p><small>Technical note: The book data is being loaded from your admin panel.</small></p>
+                    </div>
+                `;
+            }
+        }
+
+        // Fetch books from CMS
+        async function fetchCMSBooks() {
+            try {
+                const apiUrl = 'https://api.github.com/repos/RabeeLuqmann/rabeeluqmann.github.io/contents/content/books';
+                const response = await fetch(apiUrl);
+                
+                if (response.ok) {
+                    const files = await response.json();
+                    const books = [];
+                    
+                    for (const file of files) {
+                        if (file.name.endsWith('.md')) {
+                            const bookResponse = await fetch(file.download_url);
+                            const content = await bookResponse.text();
+                            
+                            // Parse the YAML frontmatter
+                            const lines = content.split('\n');
+                            let inFrontmatter = false;
+                            const bookData = {};
+                            
+                            for (const line of lines) {
+                                if (line.trim() === '---') {
+                                    inFrontmatter = !inFrontmatter;
+                                    continue;
+                                }
+                                if (inFrontmatter && line.includes(':')) {
+                                    const [key, ...value] = line.split(':');
+                                    bookData[key.trim()] = value.join(':').trim();
+                                }
+                            }
+                            
+                            // Parse links if they exist
+                            if (bookData.links) {
+                                try {
+                                    bookData.links = JSON.parse(bookData.links.replace(/(\w+):/g, '"$1":'));
+                                } catch (e) {
+                                    bookData.links = {};
+                                }
+                            }
+                            
+                            books.push(bookData);
+                        }
+                    }
+                    
+                    return books;
+                }
+            } catch (error) {
+                console.log('GitHub API method failed');
+            }
+            
+            return [];
+        }
+
         // Initialize the page
-        renderBooks();
+        document.addEventListener('DOMContentLoaded', function() {
+            renderBooks();
+            loadCMSBooks(); // Load CMS books
+        });
     </script>
 </body>
 </html>
