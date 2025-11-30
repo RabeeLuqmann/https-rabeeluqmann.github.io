@@ -1,0 +1,26 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Your Book Title",
+      "cover": "/images/book-cover-1.jpg",
+      "description": "A captivating story about...",
+      "links": {
+        "amazon": "https://amazon.com/your-book",
+        "other": "https://other-store.com/your-book"
+      },
+      "featured": true
+    },
+    {
+      "id": 2, 
+      "title": "Another Book",
+      "cover": "/images/book-cover-2.jpg",
+      "description": "Another amazing story...",
+      "links": {
+        "amazon": "https://amazon.com/another-book",
+        "other": "https://other-store.com/another-book"
+      },
+      "featured": false
+    }
+  ]
+}
