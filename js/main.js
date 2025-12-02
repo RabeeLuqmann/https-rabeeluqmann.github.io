@@ -1,43 +1,47 @@
-// Fetch data from data.json and populate the page
+// Elements
+const booksContainer = document.getElementById('booksContainer');
+const profilePic = document.getElementById('profilePic');
+const socialLinks = document.querySelectorAll('.social-icon');
+
+// Load data from data.json
 fetch('data.json')
   .then(response => response.json())
   .then(data => {
-    // Set profile photo
-    const profilePhoto = document.getElementById('profilePhoto');
-    profilePhoto.src = data.profilePhoto;
+    // Update profile photo
+    if (data.profilePhoto) {
+      profilePic.src = data.profilePhoto;
+    }
 
-    // Set social links
-    const socialLinksDiv = document.getElementById('socialLinks');
-    socialLinksDiv.innerHTML = '';
-    for (const [key, url] of Object.entries(data.social)) {
-      const iconClass = {
-        twitter: 'fab fa-twitter',
-        facebook: 'fab fa-facebook',
-        instagram: 'fab fa-instagram',
-        amazon: 'fab fa-amazon'
-      }[key] || 'fas fa-link';
-
-      const a = document.createElement('a');
-      a.href = url;
-      a.target = "_blank";
-      a.className = 'social-icon';
-      a.innerHTML = `<i class="${iconClass}"></i>`;
-      socialLinksDiv.appendChild(a);
+    // Update social links
+    if (data.social) {
+      socialLinks.forEach(link => {
+        const iconClass = link.querySelector('i').className;
+        if (iconClass.includes('twitter')) link.href = data.social.twitter || '#';
+        if (iconClass.includes('facebook')) link.href = data.social.facebook || '#';
+        if (iconClass.includes('instagram')) link.href = data.social.instagram || '#';
+        if (iconClass.includes('amazon')) link.href = data.social.amazon || '#';
+      });
     }
 
     // Display books
-    const booksGrid = document.getElementById('booksGrid');
-    booksGrid.innerHTML = '';
-    data.books.forEach(book => {
-      const div = document.createElement('div');
-      div.className = 'book-card';
-      div.innerHTML = `
-        <img src="${book.cover}" alt="${book.title}">
-        <h3>${book.title}</h3>
-        <p>${book.description}</p>
-        <a href="${book.link}" target="_blank" class="buy-btn">Buy Now</a>
-      `;
-      booksGrid.appendChild(div);
-    });
+    if (data.books && data.books.length > 0) {
+      booksContainer.innerHTML = '';
+      data.books.forEach(book => {
+        const bookCard = document.createElement('div');
+        bookCard.className = 'book-card';
+        bookCard.innerHTML = `
+          <img src="${book.cover}" alt="${book.title}" class="book-cover">
+          <h3 class="book-title">${book.title}</h3>
+          <p class="book-description">${book.description}</p>
+          <a href="${book.link}" target="_blank" class="buy-btn">Buy Now</a>
+        `;
+        booksContainer.appendChild(bookCard);
+      });
+    } else {
+      booksContainer.innerHTML = '<p>No books available yet.</p>';
+    }
   })
-  .catch(err => console.error('Error loading data:', err));
+  .catch(err => {
+    console.error("Error loading data.json:", err);
+    booksContainer.innerHTML = '<p>Failed to load books.</p>';
+  });
