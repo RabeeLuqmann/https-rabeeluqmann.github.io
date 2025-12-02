@@ -19,7 +19,6 @@
             min-height: 100vh;
         }
 
-        /* Header */
         header {
             background: white;
             padding: 1rem;
@@ -60,14 +59,12 @@
             background: #2980b9;
         }
 
-        /* Main Content */
         .main-content {
             max-width: 1200px;
             margin: 80px auto 30px;
             padding: 20px;
         }
 
-        /* Sections */
         .section {
             background: white;
             padding: 30px;
@@ -76,7 +73,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* Hero */
         .hero {
             text-align: center;
             padding: 40px 20px;
@@ -102,7 +98,6 @@
             margin-bottom: 20px;
         }
 
-        /* Books */
         .books-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -146,7 +141,6 @@
             display: inline-block;
         }
 
-        /* Contact */
         .contact-info {
             margin-top: 20px;
         }
@@ -161,7 +155,6 @@
             border-radius: 5px;
         }
 
-        /* Social Links */
         .social-links {
             display: flex;
             gap: 15px;
@@ -193,10 +186,6 @@
             z-index: 2000;
         }
 
-        .admin-overlay.active {
-            display: block;
-        }
-
         .admin-panel {
             position: fixed;
             top: 50%;
@@ -214,7 +203,7 @@
             display: none;
         }
 
-        .admin-panel.active {
+        .admin-overlay.active, .admin-panel.active {
             display: block;
         }
 
@@ -263,7 +252,6 @@
             margin-top: 10px;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
@@ -271,12 +259,10 @@
             margin-top: 30px;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .books-grid {
                 grid-template-columns: 1fr;
             }
-            
             .admin-panel {
                 width: 95%;
             }
@@ -288,7 +274,7 @@
     <header>
         <div class="header-content">
             <div class="logo">Rabee Luqmann</div>
-            <button class="edit-btn" onclick="showAdminPanel()">
+            <button class="edit-btn" id="editSiteBtn">
                 <i class="fas fa-edit"></i> EDIT SITE
             </button>
         </div>
@@ -342,10 +328,10 @@
     </footer>
 
     <!-- Admin Panel -->
-    <div class="admin-overlay" id="adminOverlay" onclick="hideAdminPanel()"></div>
+    <div class="admin-overlay" id="adminOverlay"></div>
     
     <div class="admin-panel" id="adminPanel">
-        <button class="close-admin" onclick="hideAdminPanel()">
+        <button class="close-admin" id="closeAdminBtn">
             <i class="fas fa-times"></i> CLOSE
         </button>
         
@@ -355,15 +341,15 @@
         <div class="form-group">
             <h3>Your Profile</h3>
             <label>Name:</label>
-            <input type="text" id="editName">
+            <input type="text" id="editName" value="Rabee Luqmann">
             
             <label>Tagline:</label>
-            <input type="text" id="editTagline">
+            <input type="text" id="editTagline" value="Author • Storyteller">
             
             <label>Profile Photo:</label>
             <input type="file" id="editPhoto" accept="image/*">
             
-            <button class="save-btn" onclick="saveProfile()">
+            <button class="save-btn" id="saveProfileBtn">
                 <i class="fas fa-save"></i> SAVE PROFILE
             </button>
         </div>
@@ -372,12 +358,12 @@
         <div class="form-group">
             <h3>Contact Info</h3>
             <label>Email:</label>
-            <input type="email" id="editEmail">
+            <input type="email" id="editEmail" value="contact@rabeeluqmann.com">
             
             <label>Phone:</label>
-            <input type="text" id="editPhone">
+            <input type="text" id="editPhone" value="+1 (555) 123-4567">
             
-            <button class="save-btn" onclick="saveContact()">
+            <button class="save-btn" id="saveContactBtn">
                 <i class="fas fa-save"></i> SAVE CONTACT
             </button>
         </div>
@@ -394,7 +380,7 @@
             <label>Amazon (optional):</label>
             <input type="url" id="editAmazon" placeholder="https://amazon.com/author/name">
             
-            <button class="save-btn" onclick="saveSocial()">
+            <button class="save-btn" id="saveSocialBtn">
                 <i class="fas fa-save"></i> SAVE SOCIAL
             </button>
         </div>
@@ -414,7 +400,7 @@
             <label>Amazon Link (optional):</label>
             <input type="url" id="newLink" placeholder="https://amazon.com/dp/...">
             
-            <button class="save-btn" onclick="addBook()">
+            <button class="save-btn" id="addBookBtn">
                 <i class="fas fa-plus"></i> ADD BOOK
             </button>
         </div>
@@ -428,18 +414,18 @@
         <!-- Backup -->
         <div class="form-group">
             <h3>Backup</h3>
-            <button class="save-btn" onclick="backupData()" style="background: #3498db;">
+            <button class="save-btn" id="backupBtn" style="background: #3498db;">
                 <i class="fas fa-download"></i> BACKUP ALL DATA
             </button>
         </div>
     </div>
 
     <script>
-        // SIMPLE GUARANTEED WORKING VERSION
-        console.log("Website loaded - ready!");
+        // ========== SIMPLE WORKING VERSION ==========
+        console.log("Website loaded!");
         
         // Default data
-        let data = {
+        let siteData = {
             name: "Rabee Luqmann",
             tagline: "Author • Storyteller",
             photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
@@ -454,96 +440,149 @@
                     desc: "A poignant portrayal of arranged marriage in India.",
                     cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop",
                     link: "https://amazon.com"
-                },
-                {
-                    title: "Endorphin",
-                    desc: "Exploring longing, addiction, and obsessive emotion.",
-                    cover: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop",
-                    link: "https://amazon.com"
                 }
             ]
         };
 
-        // Load when page starts
-        window.onload = function() {
-            loadFromStorage();
-            updatePage();
-            console.log("Page ready! Click EDIT SITE to start editing.");
-        };
+        // ========== INITIALIZE ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("DOM loaded - setting up...");
+            
+            // Load saved data
+            loadData();
+            
+            // Setup all button clicks
+            setupButtons();
+            
+            console.log("Setup complete! Ready to edit.");
+        });
 
-        // Load saved data
-        function loadFromStorage() {
-            const saved = localStorage.getItem('rabee_site');
+        // ========== LOAD/SAVE DATA ==========
+        function loadData() {
+            const saved = localStorage.getItem('rabee_author_site');
             if (saved) {
-                data = JSON.parse(saved);
-                console.log("Data loaded from storage");
+                siteData = JSON.parse(saved);
+                console.log("Loaded saved data");
             }
+            updatePage();
         }
 
-        // Save data
-        function saveToStorage() {
-            localStorage.setItem('rabee_site', JSON.stringify(data));
+        function saveData() {
+            localStorage.setItem('rabee_author_site', JSON.stringify(siteData));
             console.log("Data saved");
         }
 
-        // Update page
-        function updatePage() {
-            // Profile
-            document.getElementById('authorName').textContent = data.name;
-            document.getElementById('tagline').textContent = data.tagline;
-            document.getElementById('profilePic').src = data.photo;
+        // ========== SETUP BUTTON CLICKS ==========
+        function setupButtons() {
+            // Edit Site Button
+            document.getElementById('editSiteBtn').addEventListener('click', function() {
+                console.log("Edit Site button clicked!");
+                showAdminPanel();
+            });
             
-            // Contact
-            document.getElementById('emailText').textContent = data.email;
-            document.getElementById('phoneText').textContent = data.phone;
+            // Close Admin Button
+            document.getElementById('closeAdminBtn').addEventListener('click', function() {
+                console.log("Close button clicked!");
+                hideAdminPanel();
+            });
             
-            // Social links
-            updateSocial();
+            // Overlay click to close
+            document.getElementById('adminOverlay').addEventListener('click', function() {
+                hideAdminPanel();
+            });
             
-            // Books
-            updateBooks();
+            // Save Profile Button
+            document.getElementById('saveProfileBtn').addEventListener('click', function() {
+                console.log("Save Profile clicked!");
+                saveProfile();
+            });
             
-            // Fill edit forms
-            document.getElementById('editName').value = data.name;
-            document.getElementById('editTagline').value = data.tagline;
-            document.getElementById('editEmail').value = data.email;
-            document.getElementById('editPhone').value = data.phone;
-            document.getElementById('editTwitter').value = data.twitter;
-            document.getElementById('editInstagram').value = data.instagram;
-            document.getElementById('editAmazon').value = data.amazon;
+            // Save Contact Button
+            document.getElementById('saveContactBtn').addEventListener('click', function() {
+                console.log("Save Contact clicked!");
+                saveContact();
+            });
             
-            // Update book list
-            updateBookList();
+            // Save Social Button
+            document.getElementById('saveSocialBtn').addEventListener('click', function() {
+                console.log("Save Social clicked!");
+                saveSocialLinks();
+            });
+            
+            // Add Book Button
+            document.getElementById('addBookBtn').addEventListener('click', function() {
+                console.log("Add Book clicked!");
+                addNewBook();
+            });
+            
+            // Backup Button
+            document.getElementById('backupBtn').addEventListener('click', function() {
+                console.log("Backup clicked!");
+                backupData();
+            });
+            
+            // Escape key to close
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    hideAdminPanel();
+                }
+            });
         }
 
-        // Update social links
-        function updateSocial() {
+        // ========== UPDATE PAGE ==========
+        function updatePage() {
+            // Profile
+            document.getElementById('authorName').textContent = siteData.name;
+            document.getElementById('tagline').textContent = siteData.tagline;
+            document.getElementById('profilePic').src = siteData.photo;
+            
+            // Contact
+            document.getElementById('emailText').textContent = siteData.email;
+            document.getElementById('phoneText').textContent = siteData.phone;
+            
+            // Social links
+            updateSocialLinksDisplay();
+            
+            // Books
+            updateBooksDisplay();
+            updateBookListDisplay();
+            
+            // Fill edit forms
+            document.getElementById('editName').value = siteData.name;
+            document.getElementById('editTagline').value = siteData.tagline;
+            document.getElementById('editEmail').value = siteData.email;
+            document.getElementById('editPhone').value = siteData.phone;
+            document.getElementById('editTwitter').value = siteData.twitter;
+            document.getElementById('editInstagram').value = siteData.instagram;
+            document.getElementById('editAmazon').value = siteData.amazon;
+        }
+
+        function updateSocialLinksDisplay() {
             const container = document.getElementById('socialLinks');
             let html = '';
             
-            if (data.twitter) {
-                html += `<a href="${data.twitter}" target="_blank" class="social-icon" style="background:#1da1f2;"><i class="fab fa-twitter"></i></a>`;
+            if (siteData.twitter) {
+                html += `<a href="${siteData.twitter}" target="_blank" class="social-icon" style="background:#1da1f2;"><i class="fab fa-twitter"></i></a>`;
             }
-            if (data.instagram) {
-                html += `<a href="${data.instagram}" target="_blank" class="social-icon" style="background:#e4405f;"><i class="fab fa-instagram"></i></a>`;
+            if (siteData.instagram) {
+                html += `<a href="${siteData.instagram}" target="_blank" class="social-icon" style="background:#e4405f;"><i class="fab fa-instagram"></i></a>`;
             }
-            if (data.amazon) {
-                html += `<a href="${data.amazon}" target="_blank" class="social-icon" style="background:#ff9900;"><i class="fab fa-amazon"></i></a>`;
+            if (siteData.amazon) {
+                html += `<a href="${siteData.amazon}" target="_blank" class="social-icon" style="background:#ff9900;"><i class="fab fa-amazon"></i></a>`;
             }
             
             container.innerHTML = html;
         }
 
-        // Update books display
-        function updateBooks() {
+        function updateBooksDisplay() {
             const container = document.getElementById('booksContainer');
             
-            if (data.books.length === 0) {
+            if (siteData.books.length === 0) {
                 container.innerHTML = '<p>No books yet. Add your first book!</p>';
                 return;
             }
             
-            container.innerHTML = data.books.map(book => `
+            container.innerHTML = siteData.books.map(book => `
                 <div class="book-card">
                     <img src="${book.cover}" alt="${book.title}" class="book-cover">
                     <h3 class="book-title">${book.title}</h3>
@@ -553,16 +592,15 @@
             `).join('');
         }
 
-        // Update book list in admin
-        function updateBookList() {
+        function updateBookListDisplay() {
             const container = document.getElementById('bookList');
             
-            if (data.books.length === 0) {
+            if (siteData.books.length === 0) {
                 container.innerHTML = '<p>No books added yet.</p>';
                 return;
             }
             
-            container.innerHTML = data.books.map((book, index) => `
+            container.innerHTML = siteData.books.map((book, index) => `
                 <div style="background:#f8f9fa; padding:10px; margin:5px 0; border-radius:5px; display:flex; justify-content:space-between; align-items:center;">
                     <span><strong>${book.title}</strong></span>
                     <button onclick="deleteBook(${index})" 
@@ -573,78 +611,96 @@
             `).join('');
         }
 
-        // Delete book
-        function deleteBook(index) {
-            if (confirm(`Delete "${data.books[index].title}"?`)) {
-                data.books.splice(index, 1);
-                saveToStorage();
-                updatePage();
-                alert('Book deleted!');
-            }
-        }
-
-        // === ADMIN PANEL FUNCTIONS ===
+        // ========== ADMIN PANEL ==========
         function showAdminPanel() {
-            console.log("Opening admin panel...");
+            console.log("Opening admin panel");
             document.getElementById('adminOverlay').classList.add('active');
             document.getElementById('adminPanel').classList.add('active');
         }
 
         function hideAdminPanel() {
+            console.log("Closing admin panel");
             document.getElementById('adminOverlay').classList.remove('active');
             document.getElementById('adminPanel').classList.remove('active');
         }
 
-        // Save profile
+        // ========== SAVE FUNCTIONS ==========
         function saveProfile() {
-            data.name = document.getElementById('editName').value;
-            data.tagline = document.getElementById('editTagline').value;
+            console.log("Saving profile...");
             
-            const file = document.getElementById('editPhoto').files[0];
-            if (file) {
+            const name = document.getElementById('editName').value.trim();
+            const tagline = document.getElementById('editTagline').value.trim();
+            const fileInput = document.getElementById('editPhoto');
+            
+            if (name) siteData.name = name;
+            if (tagline) siteData.tagline = tagline;
+            
+            // Handle photo upload
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
                 const reader = new FileReader();
+                
                 reader.onload = function(e) {
-                    data.photo = e.target.result;
-                    saveToStorage();
+                    siteData.photo = e.target.result;
+                    saveData();
                     updatePage();
-                    alert('Profile updated!');
+                    alert('✓ Profile updated successfully!');
+                    fileInput.value = ''; // Clear file input
                 };
+                
+                reader.onerror = function() {
+                    alert('Error reading photo file');
+                };
+                
                 reader.readAsDataURL(file);
             } else {
-                saveToStorage();
+                saveData();
                 updatePage();
-                alert('Profile updated!');
+                alert('✓ Profile updated successfully!');
             }
         }
 
-        // Save contact
         function saveContact() {
-            data.email = document.getElementById('editEmail').value;
-            data.phone = document.getElementById('editPhone').value;
-            saveToStorage();
-            updatePage();
-            alert('Contact updated!');
-        }
-
-        // Save social
-        function saveSocial() {
-            data.twitter = document.getElementById('editTwitter').value;
-            data.instagram = document.getElementById('editInstagram').value;
-            data.amazon = document.getElementById('editAmazon').value;
-            saveToStorage();
-            updatePage();
-            alert('Social links updated!');
-        }
-
-        // Add book
-        function addBook() {
-            const title = document.getElementById('newTitle').value;
-            const desc = document.getElementById('newDesc').value;
-            const link = document.getElementById('newLink').value;
-            const file = document.getElementById('newCover').files[0];
+            console.log("Saving contact...");
             
-            if (!title || !desc) {
-                alert('Please enter title and description!');
+            const email = document.getElementById('editEmail').value.trim();
+            const phone = document.getElementById('editPhone').value.trim();
+            
+            if (email) siteData.email = email;
+            if (phone) siteData.phone = phone;
+            
+            saveData();
+            updatePage();
+            alert('✓ Contact information updated!');
+        }
+
+        function saveSocialLinks() {
+            console.log("Saving social links...");
+            
+            siteData.twitter = document.getElementById('editTwitter').value.trim();
+            siteData.instagram = document.getElementById('editInstagram').value.trim();
+            siteData.amazon = document.getElementById('editAmazon').value.trim();
+            
+            saveData();
+            updatePage();
+            alert('✓ Social links updated!');
+        }
+
+        function addNewBook() {
+            console.log("Adding new book...");
+            
+            const title = document.getElementById('newTitle').value.trim();
+            const desc = document.getElementById('newDesc').value.trim();
+            const link = document.getElementById('newLink').value.trim();
+            const fileInput = document.getElementById('newCover');
+            
+            if (!title) {
+                alert('Please enter a book title!');
+                return;
+            }
+            
+            if (!desc) {
+                alert('Please enter a book description!');
                 return;
             }
             
@@ -655,23 +711,31 @@
                 cover: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop'
             };
             
-            if (file) {
+            // Handle cover image
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
                 const reader = new FileReader();
+                
                 reader.onload = function(e) {
                     newBook.cover = e.target.result;
-                    data.books.push(newBook);
-                    saveToStorage();
+                    siteData.books.push(newBook);
+                    saveData();
                     updatePage();
                     clearBookForm();
-                    alert('Book added!');
+                    alert('✓ Book added successfully!');
                 };
+                
+                reader.onerror = function() {
+                    alert('Error reading cover image');
+                };
+                
                 reader.readAsDataURL(file);
             } else {
-                data.books.push(newBook);
-                saveToStorage();
+                siteData.books.push(newBook);
+                saveData();
                 updatePage();
                 clearBookForm();
-                alert('Book added!');
+                alert('✓ Book added successfully!');
             }
         }
 
@@ -682,9 +746,17 @@
             document.getElementById('newCover').value = '';
         }
 
-        // Backup data
+        function deleteBook(index) {
+            if (confirm(`Delete "${siteData.books[index].title}"?`)) {
+                siteData.books.splice(index, 1);
+                saveData();
+                updatePage();
+                alert('Book deleted!');
+            }
+        }
+
         function backupData() {
-            const dataStr = JSON.stringify(data, null, 2);
+            const dataStr = JSON.stringify(siteData, null, 2);
             const blob = new Blob([dataStr], {type: 'application/json'});
             const url = URL.createObjectURL(blob);
             
@@ -695,15 +767,8 @@
             a.click();
             document.body.removeChild(a);
             
-            alert('Backup downloaded! Save this file safely.');
+            alert('✓ Backup downloaded! Save this file safely.');
         }
-
-        // Close with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                hideAdminPanel();
-            }
-        });
     </script>
 </body>
 </html>
