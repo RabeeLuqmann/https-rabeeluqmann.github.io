@@ -6,7 +6,7 @@
     <title>Rabee Luqmann - Author</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Colorful Reset */
+        /* Simple Reset */
         * {
             margin: 0;
             padding: 0;
@@ -14,36 +14,23 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #333;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
         }
 
-        /* Color Variables */
-        :root {
-            --primary: #6c5ce7;
-            --secondary: #a29bfe;
-            --accent: #fd79a8;
-            --success: #00b894;
-            --danger: #e17055;
-            --warning: #fdcb6e;
-            --dark: #2d3436;
-            --light: #f9f9f9;
-        }
-
         /* Header */
         header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1.2rem 2rem;
+            background: white;
+            padding: 1rem 2rem;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .header-content {
@@ -56,31 +43,23 @@
 
         .logo {
             font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            color: #2c3e50;
         }
 
         .admin-btn {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            background: #3498db;
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 50px;
+            padding: 10px 20px;
+            border-radius: 5px;
             cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
-            transition: all 0.3s ease;
             font-size: 1rem;
+            font-weight: bold;
         }
 
         .admin-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+            background: #2980b9;
         }
 
         /* Main Content */
@@ -93,24 +72,11 @@
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 60px 40px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            margin-bottom: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--accent), var(--success));
+            padding: 40px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .profile-pic {
@@ -118,155 +84,83 @@
             height: 180px;
             border-radius: 50%;
             object-fit: cover;
-            margin: 0 auto 25px;
+            margin: 0 auto 20px;
             display: block;
-            border: 8px solid;
-            border-image-slice: 1;
-            border-width: 5px;
-            border-image-source: linear-gradient(45deg, var(--primary), var(--accent));
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 5px solid #3498db;
         }
 
-        .author-name {
-            color: var(--dark);
-            margin-bottom: 15px;
-            font-size: 3rem;
-            background: linear-gradient(45deg, var(--primary), var(--dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
         }
 
         .tagline {
-            color: var(--primary);
-            font-size: 1.4rem;
-            font-weight: 300;
+            color: #666;
+            font-size: 1.2rem;
             margin-bottom: 20px;
         }
 
         /* Sections */
         .section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
             margin-bottom: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--warning), var(--danger), var(--accent));
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         h2 {
-            color: var(--dark);
-            margin-bottom: 25px;
-            font-size: 2.2rem;
-            position: relative;
-            display: inline-block;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3498db;
             padding-bottom: 10px;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 2px;
         }
 
         /* Books Grid */
         .books-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
 
         .book-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .book-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--success), var(--primary));
-        }
-
-        .book-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            background: white;
         }
 
         .book-cover {
-            width: 160px;
-            height: 220px;
+            width: 150px;
+            height: 200px;
             object-fit: cover;
-            border-radius: 10px;
-            margin: 0 auto 20px;
+            border-radius: 5px;
+            margin: 0 auto 15px;
             display: block;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .book-card:hover .book-cover {
-            transform: scale(1.05);
         }
 
         .book-title {
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--dark);
-            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
         }
 
         .book-description {
             color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            line-height: 1.5;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
         }
 
         .buy-btn {
-            background: linear-gradient(45deg, var(--danger), #e84393);
+            background: #e74c3c;
             color: white;
             text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 50px;
+            padding: 8px 16px;
+            border-radius: 5px;
             display: inline-block;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(231, 112, 85, 0.3);
-        }
-
-        .buy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(231, 112, 85, 0.4);
         }
 
         /* Contact Info */
@@ -282,29 +176,50 @@
             align-items: center;
             gap: 15px;
             padding: 15px;
-            background: rgba(108, 92, 231, 0.1);
+            background: #f8f9fa;
             border-radius: 10px;
-            border-left: 4px solid var(--primary);
         }
 
         .contact-item i {
-            color: var(--primary);
+            color: #3498db;
             font-size: 1.2rem;
             width: 30px;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.3rem;
         }
 
         /* Admin Panel */
         .admin-panel {
             position: fixed;
             top: 0;
-            right: -450px;
-            width: 450px;
+            right: -400px;
+            width: 400px;
             height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            box-shadow: -5px 0 30px rgba(0,0,0,0.3);
-            transition: right 0.4s ease;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s;
             z-index: 2000;
-            padding: 30px;
+            padding: 20px;
             overflow-y: auto;
         }
 
@@ -313,159 +228,63 @@
         }
 
         .close-admin {
-            background: rgba(255, 255, 255, 0.2);
+            background: #e74c3c;
             color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: none;
             padding: 10px 20px;
-            border-radius: 50px;
+            border-radius: 5px;
             cursor: pointer;
-            margin-bottom: 30px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .close-admin:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .admin-section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .admin-section h3 {
-            color: var(--primary);
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-weight: bold;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--dark);
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
         }
 
-        input, textarea, select {
+        input, textarea {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
             font-size: 16px;
-            transition: all 0.3s ease;
-            background: white;
-        }
-
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
         }
 
         textarea {
-            height: 120px;
-            resize: vertical;
+            height: 100px;
         }
 
         .form-btn {
-            background: linear-gradient(45deg, var(--success), #00cec9);
+            background: #27ae60;
             color: white;
             border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
+            padding: 12px;
+            border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
             width: 100%;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            font-weight: bold;
             margin-top: 10px;
         }
 
         .form-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 184, 148, 0.3);
-        }
-
-        .delete-btn {
-            background: linear-gradient(45deg, var(--danger), #d63031);
-        }
-
-        .delete-btn:hover {
-            box-shadow: 0 8px 25px rgba(225, 112, 85, 0.3);
-        }
-
-        /* Social Links */
-        .social-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 1.3rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
-        }
-
-        .social-icon:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 10px 25px rgba(108, 92, 231, 0.4);
-        }
-
-        .social-icon.twitter {
-            background: linear-gradient(45deg, #1da1f2, #009ff5);
-        }
-
-        .social-icon.instagram {
-            background: linear-gradient(45deg, #e4405f, #c13584);
-        }
-
-        .social-icon.amazon {
-            background: linear-gradient(45deg, #ff9900, #ff6b00);
-        }
-
-        .social-icon.goodreads {
-            background: linear-gradient(45deg, #553b08, #8b6b33);
+            background: #219653;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 30px;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
             color: white;
-            margin-top: 60px;
-            border-radius: 20px 20px 0 0;
+            margin-top: 50px;
         }
 
         /* Responsive */
@@ -478,18 +297,6 @@
             .books-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .author-name {
-                font-size: 2.2rem;
-            }
-            
-            .section {
-                padding: 25px;
-            }
-            
-            .social-links {
-                gap: 15px;
-            }
         }
     </style>
 </head>
@@ -499,7 +306,7 @@
         <div class="header-content">
             <div class="logo">Rabee Luqmann</div>
             <button class="admin-btn" id="adminBtn">
-                <i class="fas fa-tools"></i> Manage Site
+                <i class="fas fa-edit"></i> EDIT SITE
             </button>
         </div>
     </header>
@@ -510,10 +317,10 @@
         <section class="hero">
             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" 
                  alt="Rabee Luqmann" class="profile-pic" id="profilePic">
-            <h1 class="author-name" id="authorName">Rabee Luqmann</h1>
+            <h1 id="authorName">Rabee Luqmann</h1>
             <p class="tagline" id="tagline">Author • Storyteller • Explorer of Hearts</p>
             <div class="social-links" id="socialLinks">
-                <!-- Social links will be loaded here -->
+                <!-- Social links loaded by JavaScript -->
             </div>
         </section>
 
@@ -521,12 +328,8 @@
         <section class="section" id="about">
             <h2>About Me</h2>
             <div id="aboutContent">
-                <p style="font-size: 1.1rem; line-height: 1.8; color: #555;">
-                    I am <strong style="color: var(--primary);">Rabee Luqmann</strong>, a passionate author who crafts stories that touch the deepest corners of the human heart. My journey in literature is fueled by a desire to explore love, longing, and the complex tapestry of human emotions across diverse cultures.
-                </p>
-                <p style="margin-top: 20px; font-size: 1.1rem; line-height: 1.8; color: #555;">
-                    Each book is a new adventure, a new exploration of what makes us human. From the traditional landscapes of India in "Bound by Destiny" to the raw emotional depths in "Endorphin," my writing invites readers on journeys they won't soon forget.
-                </p>
+                <p>I am Rabee Luqmann, a passionate author who crafts stories that touch the deepest corners of the human heart.</p>
+                <p style="margin-top: 15px;">My writing explores love, longing, and the complex tapestry of human emotions across diverse cultures.</p>
             </div>
         </section>
 
@@ -534,14 +337,14 @@
         <section class="section" id="books">
             <h2>My Books</h2>
             <div id="booksContainer" class="books-grid">
-                <!-- Books will be loaded here -->
+                <!-- Books loaded by JavaScript -->
             </div>
         </section>
 
         <!-- Contact Section -->
         <section class="section" id="contact">
-            <h2>Let's Connect</h2>
-            <div class="contact-info" id="contactInfo">
+            <h2>Contact Me</h2>
+            <div class="contact-info">
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
                     <span id="emailText">contact@rabeeluqmann.com</span>
@@ -557,468 +360,374 @@
     <!-- Admin Panel -->
     <div class="admin-panel" id="adminPanel">
         <button class="close-admin" id="closeAdmin">
-            <i class="fas fa-times"></i> Close
+            <i class="fas fa-times"></i> CLOSE
         </button>
         
+        <h2 style="color: #2c3e50; margin-bottom: 20px;">Website Editor</h2>
+        
         <!-- Profile Editor -->
-        <div class="admin-section">
-            <h3><i class="fas fa-user-edit"></i> Edit Profile</h3>
-            <div class="form-group">
-                <label>Your Name</label>
-                <input type="text" id="editAuthorName" placeholder="Enter your name">
-            </div>
-            <div class="form-group">
-                <label>Tagline</label>
-                <input type="text" id="editTagline" placeholder="Enter your tagline">
-            </div>
-            <div class="form-group">
-                <label>Profile Photo</label>
-                <input type="file" id="profilePhotoInput" accept="image/*">
-            </div>
-            <button class="form-btn" onclick="updateProfile()">
-                <i class="fas fa-save"></i> Save Profile
-            </button>
+        <div class="form-group">
+            <h3>Edit Profile</h3>
+            <label>Your Name:</label>
+            <input type="text" id="editName" placeholder="Enter your name">
+            
+            <label>Tagline:</label>
+            <input type="text" id="editTaglineInput" placeholder="Enter tagline">
+            
+            <label>Profile Photo:</label>
+            <input type="file" id="editProfilePhoto" accept="image/*">
+            
+            <button class="form-btn" onclick="saveProfile()">Save Profile</button>
         </div>
 
         <!-- Contact Editor -->
-        <div class="admin-section">
-            <h3><i class="fas fa-envelope"></i> Edit Contact Info</h3>
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" id="editEmail" placeholder="your@email.com">
-            </div>
-            <div class="form-group">
-                <label>Phone Number</label>
-                <input type="text" id="editPhone" placeholder="+1 (123) 456-7890">
-            </div>
-            <button class="form-btn" onclick="updateContact()">
-                <i class="fas fa-save"></i> Save Contact Info
-            </button>
+        <div class="form-group">
+            <h3>Edit Contact</h3>
+            <label>Email:</label>
+            <input type="email" id="editEmail" placeholder="your@email.com">
+            
+            <label>Phone:</label>
+            <input type="text" id="editPhone" placeholder="Your phone number">
+            
+            <button class="form-btn" onclick="saveContact()">Save Contact</button>
         </div>
 
         <!-- Social Links Editor -->
-        <div class="admin-section">
-            <h3><i class="fas fa-share-alt"></i> Edit Social Links</h3>
-            <div class="form-group">
-                <label>Twitter URL (optional)</label>
-                <input type="url" id="editTwitter" placeholder="https://twitter.com/username">
-            </div>
-            <div class="form-group">
-                <label>Instagram URL (optional)</label>
-                <input type="url" id="editInstagram" placeholder="https://instagram.com/username">
-            </div>
-            <div class="form-group">
-                <label>Amazon Author Page (optional)</label>
-                <input type="url" id="editAmazon" placeholder="https://amazon.com/author/name">
-            </div>
-            <button class="form-btn" onclick="updateSocialLinks()">
-                <i class="fas fa-save"></i> Save Social Links
-            </button>
+        <div class="form-group">
+            <h3>Edit Social Links</h3>
+            <label>Twitter:</label>
+            <input type="url" id="editTwitter" placeholder="https://twitter.com/username">
+            
+            <label>Instagram:</label>
+            <input type="url" id="editInstagram" placeholder="https://instagram.com/username">
+            
+            <label>Amazon:</label>
+            <input type="url" id="editAmazon" placeholder="https://amazon.com/author/name">
+            
+            <button class="form-btn" onclick="saveSocialLinks()">Save Social Links</button>
         </div>
 
-        <!-- Books Manager -->
-        <div class="admin-section">
-            <h3><i class="fas fa-book"></i> Manage Books</h3>
-            <div class="form-group">
-                <label>Add New Book</label>
-                <input type="text" id="newBookTitle" placeholder="Book title">
-            </div>
-            <div class="form-group">
-                <label>Book Description</label>
-                <textarea id="newBookDescription" placeholder="Book description"></textarea>
-            </div>
-            <div class="form-group">
-                <label>Cover Image</label>
-                <input type="file" id="newBookCover" accept="image/*">
-            </div>
-            <div class="form-group">
-                <label>Amazon Link (optional)</label>
-                <input type="url" id="newBookLink" placeholder="https://amazon.com/dp/...">
-            </div>
-            <button class="form-btn" onclick="addNewBook()">
-                <i class="fas fa-plus"></i> Add Book
-            </button>
-
-            <div id="adminBooksList" style="margin-top: 30px;">
-                <!-- Books list will appear here -->
-            </div>
+        <!-- Book Manager -->
+        <div class="form-group">
+            <h3>Add New Book</h3>
+            <label>Book Title:</label>
+            <input type="text" id="newBookTitle" placeholder="Book title">
+            
+            <label>Description:</label>
+            <textarea id="newBookDesc" placeholder="Book description"></textarea>
+            
+            <label>Cover Image:</label>
+            <input type="file" id="newBookCover" accept="image/*">
+            
+            <label>Amazon Link:</label>
+            <input type="url" id="newBookLink" placeholder="https://amazon.com/dp/...">
+            
+            <button class="form-btn" onclick="addBook()">Add Book</button>
         </div>
 
-        <!-- Backup Section -->
-        <div class="admin-section">
-            <h3><i class="fas fa-database"></i> Backup & Restore</h3>
-            <button class="form-btn" onclick="exportData()">
-                <i class="fas fa-download"></i> Backup All Data
-            </button>
-            <div class="form-group" style="margin-top: 20px;">
-                <label>Restore from Backup</label>
-                <input type="file" id="importFile" accept=".json">
-            </div>
-            <button class="form-btn" onclick="importData()" style="background: linear-gradient(45deg, var(--primary), var(--secondary));">
-                <i class="fas fa-upload"></i> Restore Backup
-            </button>
+        <!-- Book List -->
+        <div class="form-group">
+            <h3>Your Books</h3>
+            <div id="bookList"></div>
+        </div>
+
+        <!-- Backup -->
+        <div class="form-group">
+            <h3>Backup & Restore</h3>
+            <button class="form-btn" onclick="backupData()">Backup All Data</button>
+            
+            <label style="margin-top: 15px;">Restore:</label>
+            <input type="file" id="restoreFile" accept=".json">
+            <button class="form-btn" onclick="restoreData()">Restore Data</button>
         </div>
     </div>
 
     <footer>
-        <p style="font-size: 1.1rem; margin-bottom: 10px;">© 2024 Rabee Luqmann</p>
-        <p style="opacity: 0.8;">Manage your site anytime with the "Manage Site" button</p>
+        <p>&copy; 2024 Rabee Luqmann. All rights reserved.</p>
     </footer>
 
     <script>
-        // ==================== WEBSITE DATA ====================
-        let websiteData = {
-            authorName: "Rabee Luqmann",
+        // SIMPLE WORKING VERSION
+        console.log("Website loaded - ready to edit!");
+        
+        // Default data
+        let siteData = {
+            name: "Rabee Luqmann",
             tagline: "Author • Storyteller • Explorer of Hearts",
-            profilePhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+            profilePic: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
             email: "contact@rabeeluqmann.com",
             phone: "+1 (555) 123-4567",
-            socialLinks: {
-                twitter: "",
-                instagram: "",
-                amazon: ""
-            },
+            twitter: "",
+            instagram: "",
+            amazon: "",
             books: [
                 {
-                    id: 1,
                     title: "Bound by Destiny",
-                    description: "A poignant portrayal of arranged marriage in India, blending tradition with modernity. A story of love, duty, and self-discovery.",
+                    desc: "A poignant portrayal of arranged marriage in India, blending tradition with modernity.",
                     cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop",
-                    link: "https://amazon.com",
-                    featured: true
+                    link: "https://amazon.com"
                 },
                 {
-                    id: 2,
                     title: "Endorphin: The Ache of Wanting",
-                    description: "A raw, lyrical narrative exploring longing, addiction, and obsessive emotion. Dive into the depths of human desire.",
+                    desc: "A raw, lyrical narrative exploring longing, addiction, and obsessive emotion.",
                     cover: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop",
-                    link: "https://amazon.com",
-                    featured: true
+                    link: "https://amazon.com"
                 }
             ]
         };
 
-        // ==================== DOM ELEMENTS ====================
-        const adminBtn = document.getElementById('adminBtn');
-        const adminPanel = document.getElementById('adminPanel');
-        const closeAdmin = document.getElementById('closeAdmin');
-
-        // ==================== INITIALIZE ====================
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load saved data
-            loadData();
-            
-            // Setup event listeners
-            adminBtn.addEventListener('click', openAdminPanel);
-            closeAdmin.addEventListener('click', closeAdminPanel);
-            
-            // Close admin when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!adminPanel.contains(event.target) && 
-                    !adminBtn.contains(event.target) && 
-                    adminPanel.classList.contains('active')) {
-                    closeAdminPanel();
-                }
-            });
-            
-            // Load admin books list
-            loadAdminBooks();
-        });
-
-        // ==================== LOAD DATA ====================
+        // Load saved data
         function loadData() {
-            const savedData = localStorage.getItem('rabeeluqmann_website');
-            if (savedData) {
-                websiteData = JSON.parse(savedData);
+            const saved = localStorage.getItem('rabeeluqmann_site');
+            if (saved) {
+                siteData = JSON.parse(saved);
             }
-            
-            updateWebsite();
+            updatePage();
+            loadBooksList();
         }
 
-        // ==================== SAVE DATA ====================
+        // Save data
         function saveData() {
-            localStorage.setItem('rabeeluqmann_website', JSON.stringify(websiteData));
+            localStorage.setItem('rabeeluqmann_site', JSON.stringify(siteData));
+            updatePage();
+            alert("Changes saved!");
         }
 
-        // ==================== UPDATE WEBSITE ====================
-        function updateWebsite() {
-            // Update profile
-            document.getElementById('authorName').textContent = websiteData.authorName;
-            document.getElementById('tagline').textContent = websiteData.tagline;
-            document.getElementById('profilePic').src = websiteData.profilePhoto;
+        // Update page with current data
+        function updatePage() {
+            // Profile
+            document.getElementById('authorName').textContent = siteData.name;
+            document.getElementById('tagline').textContent = siteData.tagline;
+            document.getElementById('profilePic').src = siteData.profilePic;
             
-            // Update contact
-            document.getElementById('emailText').textContent = websiteData.email;
-            document.getElementById('phoneText').textContent = websiteData.phone;
+            // Contact
+            document.getElementById('emailText').textContent = siteData.email;
+            document.getElementById('phoneText').textContent = siteData.phone;
             
-            // Update social links
-            updateSocialLinksDisplay();
+            // Social links
+            updateSocialLinks();
             
-            // Update books
-            updateBooksDisplay();
+            // Books
+            updateBooks();
             
-            // Populate admin forms
-            populateAdminForms();
+            // Fill edit forms
+            document.getElementById('editName').value = siteData.name;
+            document.getElementById('editTaglineInput').value = siteData.tagline;
+            document.getElementById('editEmail').value = siteData.email;
+            document.getElementById('editPhone').value = siteData.phone;
+            document.getElementById('editTwitter').value = siteData.twitter || '';
+            document.getElementById('editInstagram').value = siteData.instagram || '';
+            document.getElementById('editAmazon').value = siteData.amazon || '';
         }
 
-        // ==================== SOCIAL LINKS DISPLAY ====================
-        function updateSocialLinksDisplay() {
-            const socialLinksContainer = document.getElementById('socialLinks');
-            const links = websiteData.socialLinks;
+        // Update social links
+        function updateSocialLinks() {
+            const container = document.getElementById('socialLinks');
+            let html = '';
             
-            socialLinksContainer.innerHTML = '';
-            
-            if (links.twitter) {
-                socialLinksContainer.innerHTML += `
-                    <a href="${links.twitter}" target="_blank" class="social-icon twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                `;
+            if (siteData.twitter) {
+                html += `<a href="${siteData.twitter}" target="_blank" class="social-icon" style="background:#1da1f2;"><i class="fab fa-twitter"></i></a>`;
+            }
+            if (siteData.instagram) {
+                html += `<a href="${siteData.instagram}" target="_blank" class="social-icon" style="background:#e4405f;"><i class="fab fa-instagram"></i></a>`;
+            }
+            if (siteData.amazon) {
+                html += `<a href="${siteData.amazon}" target="_blank" class="social-icon" style="background:#ff9900;"><i class="fab fa-amazon"></i></a>`;
             }
             
-            if (links.instagram) {
-                socialLinksContainer.innerHTML += `
-                    <a href="${links.instagram}" target="_blank" class="social-icon instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                `;
-            }
-            
-            if (links.amazon) {
-                socialLinksContainer.innerHTML += `
-                    <a href="${links.amazon}" target="_blank" class="social-icon amazon">
-                        <i class="fab fa-amazon"></i>
-                    </a>
-                `;
-            }
+            container.innerHTML = html;
         }
 
-        // ==================== BOOKS DISPLAY ====================
-        function updateBooksDisplay() {
-            const booksContainer = document.getElementById('booksContainer');
-            const books = websiteData.books;
+        // Update books display
+        function updateBooks() {
+            const container = document.getElementById('booksContainer');
             
-            if (books.length === 0) {
-                booksContainer.innerHTML = `
-                    <div style="text-align: center; padding: 60px; color: #666; grid-column: 1 / -1;">
-                        <i class="fas fa-book-open" style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;"></i>
-                        <h3 style="color: var(--primary); margin-bottom: 10px;">No Books Yet</h3>
-                        <p>Add your first book using the Manage Site panel!</p>
-                    </div>
-                `;
+            if (siteData.books.length === 0) {
+                container.innerHTML = '<p>No books yet. Add your first book!</p>';
                 return;
             }
             
-            booksContainer.innerHTML = '';
-            
-            books.forEach(book => {
-                const bookCard = document.createElement('div');
-                bookCard.className = 'book-card';
-                bookCard.innerHTML = `
-                    <img src="${book.cover}" alt="${book.title}" class="book-cover"
-                         onerror="this.src='https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=400&h=600&fit=crop'">
+            container.innerHTML = siteData.books.map(book => `
+                <div class="book-card">
+                    <img src="${book.cover}" alt="${book.title}" class="book-cover">
                     <h3 class="book-title">${book.title}</h3>
-                    <p class="book-description">${book.description}</p>
-                    ${book.link ? `<a href="${book.link}" target="_blank" class="buy-btn">Get on Amazon</a>` : ''}
-                `;
-                booksContainer.appendChild(bookCard);
-            });
+                    <p class="book-description">${book.desc}</p>
+                    <a href="${book.link}" target="_blank" class="buy-btn">Buy Now</a>
+                </div>
+            `).join('');
         }
 
-        // ==================== ADMIN PANEL ====================
-        function openAdminPanel() {
-            adminPanel.classList.add('active');
-            populateAdminForms();
-        }
-
-        function closeAdminPanel() {
-            adminPanel.classList.remove('active');
-        }
-
-        // ==================== POPULATE ADMIN FORMS ====================
-        function populateAdminForms() {
-            document.getElementById('editAuthorName').value = websiteData.authorName;
-            document.getElementById('editTagline').value = websiteData.tagline;
-            document.getElementById('editEmail').value = websiteData.email;
-            document.getElementById('editPhone').value = websiteData.phone;
-            document.getElementById('editTwitter').value = websiteData.socialLinks.twitter || '';
-            document.getElementById('editInstagram').value = websiteData.socialLinks.instagram || '';
-            document.getElementById('editAmazon').value = websiteData.socialLinks.amazon || '';
-        }
-
-        // ==================== UPDATE PROFILE ====================
-        function updateProfile() {
-            const name = document.getElementById('editAuthorName').value.trim();
-            const tagline = document.getElementById('editTagline').value.trim();
-            const fileInput = document.getElementById('profilePhotoInput');
+        // Load books list in admin panel
+        function loadBooksList() {
+            const container = document.getElementById('bookList');
             
-            if (name) websiteData.authorName = name;
-            if (tagline) websiteData.tagline = tagline;
+            if (siteData.books.length === 0) {
+                container.innerHTML = '<p>No books added yet.</p>';
+                return;
+            }
             
-            // Handle profile photo upload
+            container.innerHTML = siteData.books.map((book, index) => `
+                <div style="background:#f8f9fa; padding:10px; margin:5px 0; border-radius:5px;">
+                    <strong>${book.title}</strong>
+                    <button onclick="deleteBook(${index})" 
+                            style="float:right; background:#e74c3c; color:white; border:none; padding:2px 8px; border-radius:3px; cursor:pointer;">
+                        X
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Delete book
+        function deleteBook(index) {
+            if (confirm(`Delete "${siteData.books[index].title}"?`)) {
+                siteData.books.splice(index, 1);
+                saveData();
+                loadBooksList();
+            }
+        }
+
+        // Save profile
+        function saveProfile() {
+            siteData.name = document.getElementById('editName').value || siteData.name;
+            siteData.tagline = document.getElementById('editTaglineInput').value || siteData.tagline;
+            
+            const fileInput = document.getElementById('editProfilePhoto');
             if (fileInput.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    websiteData.profilePhoto = e.target.result;
+                    siteData.profilePic = e.target.result;
                     saveData();
-                    updateWebsite();
-                    alert('Profile updated successfully!');
-                    fileInput.value = '';
                 };
                 reader.readAsDataURL(fileInput.files[0]);
             } else {
                 saveData();
-                updateWebsite();
-                alert('Profile updated successfully!');
             }
         }
 
-        // ==================== UPDATE CONTACT ====================
-        function updateContact() {
-            const email = document.getElementById('editEmail').value.trim();
-            const phone = document.getElementById('editPhone').value.trim();
-            
-            if (email) websiteData.email = email;
-            if (phone) websiteData.phone = phone;
-            
+        // Save contact
+        function saveContact() {
+            siteData.email = document.getElementById('editEmail').value || siteData.email;
+            siteData.phone = document.getElementById('editPhone').value || siteData.phone;
             saveData();
-            updateWebsite();
-            alert('Contact information updated!');
         }
 
-        // ==================== UPDATE SOCIAL LINKS ====================
-        function updateSocialLinks() {
-            websiteData.socialLinks.twitter = document.getElementById('editTwitter').value.trim();
-            websiteData.socialLinks.instagram = document.getElementById('editInstagram').value.trim();
-            websiteData.socialLinks.amazon = document.getElementById('editAmazon').value.trim();
-            
+        // Save social links
+        function saveSocialLinks() {
+            siteData.twitter = document.getElementById('editTwitter').value;
+            siteData.instagram = document.getElementById('editInstagram').value;
+            siteData.amazon = document.getElementById('editAmazon').value;
             saveData();
-            updateWebsite();
-            alert('Social links updated!');
         }
 
-        // ==================== BOOK MANAGEMENT ====================
-        function addNewBook() {
-            const title = document.getElementById('newBookTitle').value.trim();
-            const description = document.getElementById('newBookDescription').value.trim();
-            const link = document.getElementById('newBookLink').value.trim();
+        // Add book
+        function addBook() {
+            const title = document.getElementById('newBookTitle').value;
+            const desc = document.getElementById('newBookDesc').value;
+            const link = document.getElementById('newBookLink').value;
             const fileInput = document.getElementById('newBookCover');
             
-            if (!title || !description) {
-                alert('Please enter book title and description!');
+            if (!title || !desc) {
+                alert('Please enter title and description!');
                 return;
             }
             
             const newBook = {
-                id: Date.now(),
                 title: title,
-                description: description,
-                link: link || '',
-                cover: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop',
-                featured: false
+                desc: desc,
+                link: link || 'https://amazon.com',
+                cover: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop'
             };
             
-            // Handle cover image upload
             if (fileInput.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     newBook.cover = e.target.result;
-                    websiteData.books.push(newBook);
+                    siteData.books.push(newBook);
                     saveData();
-                    updateWebsite();
-                    loadAdminBooks();
-                    resetBookForm();
-                    alert('Book added successfully!');
+                    loadBooksList();
+                    clearBookForm();
                 };
                 reader.readAsDataURL(fileInput.files[0]);
             } else {
-                websiteData.books.push(newBook);
+                siteData.books.push(newBook);
                 saveData();
-                updateWebsite();
-                loadAdminBooks();
-                resetBookForm();
-                alert('Book added successfully!');
+                loadBooksList();
+                clearBookForm();
             }
         }
 
-        function loadAdminBooks() {
-            const adminBooksList = document.getElementById('adminBooksList');
-            const books = websiteData.books;
-            
-            if (books.length === 0) {
-                adminBooksList.innerHTML = '<p>No books added yet.</p>';
-                return;
-            }
-            
-            let booksHTML = '<h4>Your Books:</h4>';
-            books.forEach((book, index) => {
-                booksHTML += `
-                    <div style="background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <strong>${book.title}</strong>
-                                <p style="color: #666; margin: 5px 0 0 0; font-size: 0.9em;">${book.description.substring(0, 80)}...</p>
-                            </div>
-                            <button onclick="deleteBook(${index})" 
-                                    style="background: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            adminBooksList.innerHTML = booksHTML;
-        }
-
-        function deleteBook(index) {
-            if (confirm(`Are you sure you want to delete "${websiteData.books[index].title}"?`)) {
-                websiteData.books.splice(index, 1);
-                saveData();
-                updateWebsite();
-                loadAdminBooks();
-                alert('Book deleted!');
-            }
-        }
-
-        function resetBookForm() {
+        function clearBookForm() {
             document.getElementById('newBookTitle').value = '';
-            document.getElementById('newBookDescription').value = '';
+            document.getElementById('newBookDesc').value = '';
             document.getElementById('newBookLink').value = '';
             document.getElementById('newBookCover').value = '';
         }
 
-        // ==================== BACKUP & RESTORE ====================
-        function exportData() {
-            const dataStr = JSON.stringify(websiteData, null, 2);
-            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+        // Backup data
+        function backupData() {
+            const dataStr = JSON.stringify(siteData, null, 2);
+            const blob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
             
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(dataBlob);
-            link.download = 'rabeeluqmann_website_backup.json';
-            link.click();
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'rabeeluqmann_backup.json';
+            a.click();
             
             alert('Backup downloaded!');
         }
 
-        function importData() {
-            const fileInput = document.getElementById('importFile');
+        // Restore data
+        function restoreData() {
+            const fileInput = document.getElementById('restoreFile');
             const file = fileInput.files[0];
             
             if (!file) {
-                alert('Please select a backup file first!');
+                alert('Please select a backup file!');
                 return;
             }
             
             const reader = new FileReader();
             reader.onload = function(e) {
                 try {
-                    const importedData = JSON.parse(e.target.result);
-                    websiteData = importedData;
+                    siteData = JSON.parse(e.target.result);
                     saveData();
-                    updateWebsite();
-                    loadAdminBooks();
-                    alert('Backup restored successfully!');
+                    loadBooksList();
+                    alert('Backup restored!');
                     fileInput.value = '';
-                } catch (error) {
-                    alert('
+                } catch (err) {
+                    alert('Invalid backup file!');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // Admin panel functions
+        document.getElementById('adminBtn').onclick = function() {
+            document.getElementById('adminPanel').classList.add('active');
+            console.log("Admin panel opened");
+        };
+
+        document.getElementById('closeAdmin').onclick = function() {
+            document.getElementById('adminPanel').classList.remove('active');
+        };
+
+        // Close panel when clicking outside
+        document.addEventListener('click', function(event) {
+            const panel = document.getElementById('adminPanel');
+            const btn = document.getElementById('adminBtn');
+            
+            if (!panel.contains(event.target) && !btn.contains(event.target) && panel.classList.contains('active')) {
+                panel.classList.remove('active');
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Page loaded, initializing...");
+            loadData();
+            console.log("Data loaded, ready to edit!");
+        });
+    </script>
+</body>
+</html>
