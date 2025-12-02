@@ -1,1 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Rabee Luqmann</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
+    .container { max-width: 800px; margin: 40px auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+    h1 { text-align: center; color: #2c3e50; }
+    .form-group { margin-bottom: 15px; }
+    label { font-weight: bold; display: block; margin-bottom: 5px; }
+    input[type="text"], input[type="url"], input[type="password"], textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+    textarea { height: 80px; }
+    button { padding: 10px 20px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+    button:hover { background: #1e8449; }
+    .section { margin-top: 30px; border-top: 2px solid #3498db; padding-top: 20px; }
+  </style>
+</head>
+<body>
 
+<div class="container">
+  <h1>Admin Panel</h1>
+
+  <!-- Login -->
+  <div id="loginSection">
+    <div class="form-group">
+      <label>Password:</label>
+      <input type="password" id="adminPassword" placeholder="Enter admin password">
+    </div>
+    <button onclick="login()">Login</button>
+  </div>
+
+  <!-- Admin Content -->
+  <div id="adminContent" style="display:none;">
+    
+    <!-- Profile Photo -->
+    <div class="section">
+      <h2>Update Profile Photo</h2>
+      <input type="text" id="profilePhotoInput" placeholder="Profile photo URL">
+      <button onclick="updateProfilePhoto()">Update Photo</button>
+    </div>
+
+    <!-- Social Links -->
+    <div class="section">
+      <h2>Edit Social Links</h2>
+      <div class="form-group"><label>Twitter:</label><input type="text" id="twitterInput" placeholder="https://twitter.com/..."></div>
+      <div class="form-group"><label>Facebook:</label><input type="text" id="facebookInput" placeholder="https://facebook.com/..."></div>
+      <div class="form-group"><label>Instagram:</label><input type="text" id="instagramInput" placeholder="https://instagram.com/..."></div>
+      <div class="form-group"><label>Amazon:</label><input type="text" id="amazonInput" placeholder="https://amazon.com/..."></div>
+      <button onclick="updateSocial()">Update Social Links</button>
+    </div>
+
+    <!-- Add New Book -->
+    <div class="section">
+      <h2>Add New Book</h2>
+      <div class="form-group"><label>Title:</label><input type="text" id="bookTitle"></div>
+      <div class="form-group"><label>Description:</label><textarea id="bookDesc"></textarea></div>
+      <div class="form-group"><label>Cover Image URL:</label><input type="text" id="bookCover"></div>
+      <div class="form-group"><label>Amazon Link:</label><input type="text" id="bookLink"></div>
+      <button onclick="addBook()">Add Book</button>
+    </div>
+
+    <!-- Export/Import -->
+    <div class="section">
+      <h2>Backup / Restore</h2>
+      <button onclick="exportData()">Export Data</button>
+      <div class="form-group" style="margin-top:15px;">
+        <label>Import Data:</label>
+        <input type="file" id="importFile" accept=".json">
+      </div>
+      <button onclick="importData()">Import Data</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
